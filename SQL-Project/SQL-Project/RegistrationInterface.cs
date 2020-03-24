@@ -114,7 +114,7 @@ namespace SQL_Project
                 trans.Commit();
                 LoadStoreStock();
             }
-            catch (Exception exception)
+            catch (PostgresException exception)
             {
                 trans.Rollback();
                 MessageBox.Show(exception.Message);
@@ -175,10 +175,10 @@ namespace SQL_Project
             NpgsqlTransaction trans = myConn.BeginTransaction(IsolationLevel.RepeatableRead);
             cmd.Transaction = trans;
 
-            cmd.Parameters.AddWithValue("@register_id", subscriberSellBox.Text);
-            cmd.Parameters.AddWithValue("@register_name", StringOrNull(subscriberSellBox.Text));
-            cmd.Parameters.AddWithValue("@register_address", StringOrNull(subscriberSellBox.Text));
-            cmd.Parameters.AddWithValue("@register_email", StringOrNull(subscriberSellBox.Text));
+            cmd.Parameters.AddWithValue("@register_id", idRegisterBox.Text);
+            cmd.Parameters.AddWithValue("@register_name", StringOrNull(nameRegisterBox.Text));
+            cmd.Parameters.AddWithValue("@register_address", StringOrNull(addressRegisterBox.Text));
+            cmd.Parameters.AddWithValue("@register_email", StringOrNull(emailRegisterBox.Text));
 
             try
             {
@@ -187,9 +187,8 @@ namespace SQL_Project
                 cmd.ExecuteNonQuery();
 
                 trans.Commit();
-                LoadStoreStock();
             }
-            catch (Exception exception)
+            catch (PostgresException exception)
             {
                 trans.Rollback();
                 MessageBox.Show(exception.Message);

@@ -195,17 +195,6 @@ namespace SQL_Project
             dr.Close();
         }
 
-        private void SearchButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ResetButton_Click(object sender, EventArgs e)
-        {
-            dataGrid.Columns.Clear();
-            dataGrid.Refresh();
-        }
-
         private void AddColumnNames(DataGridView dataGridView, NpgsqlDataReader dr)
         {
             dataGridView.ColumnCount = dr.FieldCount;
